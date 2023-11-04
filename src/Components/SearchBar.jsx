@@ -7,36 +7,38 @@ const SearchBar = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-  const handlesubmit = (e) =>{
-    console.log('submit')
+   
+  const handlesubmit = (e) => {
     e.preventDefault();
-  
-    if(searchTerm){
-      
-    }
-  }
 
-  return (
+    if (searchTerm) {
+      navigate(`/search/${searchTerm}`);
+
+      setSearchTerm('');
+    }
+  };
+  
+  return ( 
     <Paper
-    component="form"
-    onSubmit={handlesubmit}
-    sx={{
-        borderRadius:20,
-        border:'1px solid #e3e3e3',
-        p1:2,
-        boxShadow:'none',
-        mr:{sm:5}
-    }}
+      component='form'
+      onSubmit={handlesubmit}
+      sx={{
+        borderRadius: 20,
+        border: '1px solid #e3e3e3',
+        pl: 2,
+        boxShadow: 'none',
+        mr: { sm: 5 },
+      }}
     >
-     <input
+      <input
         className='search-bar'
-        placeholder='search...'
+        placeholder='Search...'
         value={searchTerm}
-        onChange={(e)=>setSearchTerm(e.target.value)}
-     /> 
-     <IconButton type='submit' sx={{p:'10px', color:'red'}}>
-        <Search/>
-     </IconButton>
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <IconButton type='submit' sx={{ p: '10px', color: 'red' }} aria-label='search'>
+        <Search />
+      </IconButton>
     </Paper>
   )
 }
